@@ -1,5 +1,5 @@
 +----------------------------------------------------------------------------------------- <br>
-| <b>Key Value Store</b>
+| <b>Key Value Store</b> </br>
 | <b>CS 739 Distributed Systems Project 1</b> <br> 
 | <br>
 | <b>Authors:</b> Saikat Raphael Gomes, Jason Feriante, Rahul Chatterjee <br>
