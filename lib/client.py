@@ -41,8 +41,6 @@ def kv739_get(key):
 			return 0, value
 		elif status_code == 500:
 			return -1, "ERROR!" 
-		else:
-			return -1, "WTF!!!!"
 	except urllib2.HTTPError as e:
 		if e.code == 404:
 			return 1, None # the key does not exist

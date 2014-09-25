@@ -1,9 +1,13 @@
 #For testing our client library as well as other client libraries.
 import urllib2, json, os, sys, urllib, unittest, string, random
+<<<<<<< HEAD
 
 sys.path.append(os.getcwd()+'/lib')
 #sys.path.append(os.getcwd() + '/CS739-project1/ArkoBrandonChaitan/')
 #sys.path.append(os.getcwd() + '/CS739-project1/AnushaGeraldNavneet/')
+=======
+sys.path.append("..")
+>>>>>>> master
 import client
 
 kv739_init = client.kv739_init #url
@@ -30,6 +34,16 @@ def test_get(tc):
 
   print '\nChecking a get with a key over 128 bytes'
   rs, error = kv739_get(random_string(129))
+  tc.assertEqual(rs, -1)
+
+  print '\nChecking a get with a bad key ]'
+  bad_key = random_string(20) + "]" + random_string(20)
+  rs, error = kv739_get(bad_key)
+  tc.assertEqual(rs, -1)
+
+  print '\nChecking a get with a bad key ['
+  bad_key = random_string(20) + "[" + random_string(20)
+  rs, error = kv739_get(bad_key)
   tc.assertEqual(rs, -1)
 
 def check_last_put(tc, key, value):
@@ -110,17 +124,52 @@ def test_put(tc):
   rs, ret_val = kv739_put(key, value)
   tc.assertNotEqual(rs, 0)
 
+<<<<<<< HEAD
   # print '\nChecking an empty val'
   # key = random_string(127)
   # value = ''
   # rs, ret_val = kv739_put(key, value)
   # tc.assertNotEqual(rs, -1)
   # return True
+=======
+  print '\nChecking an empty val'
+  key = random_string(127)
+  value = ''
+  rs, ret_val = kv739_put(key, value)
+  tc.assertNotEqual(rs, -1)
+
+  print '\nChecking a put with a bad key ]'
+  key = random_string(20) + "]" + random_string(20)
+  value = random_string(2047)
+  rs, ret_val = kv739_put(key, value)
+  tc.assertEqual(rs, -1)
+
+  print '\nChecking a put with a bad key ['
+  key = random_string(20) + "[" + random_string(20)
+  value = random_string(2047)
+  rs, ret_val = kv739_put(key, value)
+  tc.assertEqual(rs, -1)
+
+  print '\nChecking a put with a bad value ['
+  key = random_string(20)
+  value = random_string(200) + "[" + random_string(200)
+  rs, ret_val = kv739_put(key, value)
+  tc.assertEqual(rs, -1)
+
+  print '\nChecking a put with a bad value ['
+  key = random_string(20)
+  value = random_string(200) + "[" + random_string(200)
+  rs, ret_val = kv739_put(key, value)
+  tc.assertEqual(rs, -1)
+  
+  return True
+>>>>>>> master
 
 def main(args):
   global url;
   url = args[1]
 
+  
   print '\n+-------------------------------+'
   print 'init server: kv739_init(' + url + ')'
   print '+-------------------------------+'
